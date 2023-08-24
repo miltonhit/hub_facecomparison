@@ -20,7 +20,7 @@ First you need has installed: java17 and maven in your computer. After that run 
 2. run this command: serverless deploy
 
 ## Test without clone :)
-Just access: [coming soon]
+Just access: [https://miltonhit.github.io/hub_facecomparison](https://miltonhit.github.io/hub_facecomparison)
 
 ## Next steps
 1. Improve the frontend, separating it from the spring application.
