@@ -56,6 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: aws
+      url: ${{ steps.manifest.outputs.url }}
 
     steps:
       - uses: actions/checkout@v2
@@ -73,18 +74,12 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
+    
       - name: manifest
-        uses: serverless/github-action@v3.2
-        with:
-          args: -c "serverless plugin install --name serverless-manifest-plugin && serverless manifest --stage prd"
-          entrypoint: /bin/sh
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-      - name: echo URL
-        run: echo ${{ steps.manifest.outputs }}
+        id: manifest
+        run: |
+          url=$(cat .serverless/manifest.json | jq -r '.prd.urls.apiGateway')
+          echo "::set-output name=url::$url"
 
   deploy-frontend:
     needs: deploy-backend
