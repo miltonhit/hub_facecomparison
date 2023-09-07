@@ -16,7 +16,7 @@ public class ComparisonController {
         return "RUNNING!";
     }
 
-    @PostMapping(path = "/compare")
+    @PostMapping("/compare")
     public ComparisonOutput compare(@RequestBody  ComparisonInput input) throws Exception {
         float result = service.compareTwoPhotos(input.photo1(), input.photo2());
         return new ComparisonOutput(result);
