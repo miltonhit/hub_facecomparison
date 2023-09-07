@@ -13,18 +13,12 @@ provider:
       Resource:
         - "*"
 
-  stackTags:
-    service: ${self:service}
-    stage:   ${self:custom.stage}
-    product: ${self:custom.product}
-
   environment:
     stage: ${self:custom.stage}
     region: ${aws:region} 
     service: ${self:service}
 
 plugins:
-  - serverless-plugin-resource-tagging
   - serverless-manifest-plugin
 
 custom:

@@ -64,10 +64,11 @@ jobs:
         with:
           name: jar-artifacts
 
-      - name: serverless deploy
+      - name: Install Plugin and Deploy
         uses: serverless/github-action@v3.2
         with:
-          args: deploy --stage prd
+          args: -c "serverless plugin install --name serverless-manifest-plugin && serverless deploy --stage prd"
+          entrypoint: /bin/sh
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -75,7 +76,8 @@ jobs:
       - name: manifest
         uses: serverless/github-action@v3.2
         with:
-          args: manifest --json --stage prd
+          args: -c "serverless plugin install --name serverless-manifest-plugin && serverless manifest --stage prd"
+          entrypoint: /bin/sh
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
