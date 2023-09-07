@@ -101,10 +101,10 @@ jobs:
 
       - name: Switch api URL in index.html
         run: |
-          const fs = require('fs');
+          node -e "const fs = require('fs');
           let content = fs.readFileSync('web/index.html', 'utf8');
           content = content.replace('${URL_TO_SUBSTITUTE}', '${{ needs.deployBackend.outputs.apiGatewayUrl }}');
-          fs.writeFileSync('web/index.html', content, 'utf8');
+          fs.writeFileSync('web/index.html', content, 'utf8');"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
