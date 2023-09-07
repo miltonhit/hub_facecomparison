@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "serverless-manifest-plugin": "^1.0.9",
     "serverless-offline": "^12.0.4",
     "serverless-plugin-resource-tagging": "^1.2.0"
   }

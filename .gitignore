@@ -38,3 +38,7 @@ build/
 /node_modules
 package-lock.json
 .serverless*/
+
+# Ignore serverless manifest files
+serverless.manifest.json
+.serverless/manifest.json

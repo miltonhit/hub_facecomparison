@@ -25,6 +25,7 @@ provider:
 
 plugins:
   - serverless-plugin-resource-tagging
+  - serverless-manifest-plugin
 
 custom:
   stage: ${sls:stage}
