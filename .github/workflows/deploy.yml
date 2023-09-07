@@ -48,7 +48,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: jar-artifacts
-          path: "app/target/*.jar"
+          path: "app/target/facecomparison-0.0.1-SNAPSHOT.jar"
 
 
   deploy-backend:
@@ -63,6 +63,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: jar-artifacts
+          path: app/target
 
       - name: Install Plugin and Deploy
         uses: serverless/github-action@v3.2
