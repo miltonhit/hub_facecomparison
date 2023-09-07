@@ -1,6 +1,7 @@
 package com.br.hub.facecomparison;
 
 import com.br.hub.facecomparison.exception.InvalidImageException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.core.SdkBytes;
 import software.amazon.awssdk.services.rekognition.RekognitionClient;
@@ -8,7 +9,9 @@ import software.amazon.awssdk.services.rekognition.model.*;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/java_rekognition_code_examples.html
@@ -41,11 +44,13 @@ public class ComparisonService {
             CompareFacesRequest facesRequest = CompareFacesRequest.builder()
                     .sourceImage(souImage)
                     .targetImage(tarImage)
-                    .similarityThreshold(70F)
+                    .similarityThreshold(10F)
                     .build();
 
             // Compare the two images.
             CompareFacesResponse compareFacesResult = rekClient.compareFaces(facesRequest);
+            System.out.println(compareFacesResult.toString());
+
             List<CompareFacesMatch> faceDetails = compareFacesResult.faceMatches();
 
             for (CompareFacesMatch match : faceDetails) {
@@ -65,7 +70,8 @@ public class ComparisonService {
 
             //
             // Separa o MAIOR RESULTADO!
-            result = faceDetails.stream().max((a, b) -> a.face().confidence().compareTo(b.face().confidence())).get().face().confidence().floatValue();
+            Optional<CompareFacesMatch> resultMatchFaceMatch = faceDetails.stream().max(Comparator.comparing(a -> a.face().confidence()));
+            result = resultMatchFaceMatch.isPresent() ? resultMatchFaceMatch.get().face().confidence().floatValue() : 0f;
 
         } catch (InvalidParameterException exc) {
             throw new InvalidImageException();

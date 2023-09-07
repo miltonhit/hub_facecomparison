@@ -18,8 +18,15 @@ public class ComparisonController {
 
     @PostMapping("/compare")
     public ComparisonOutput compare(@RequestBody  ComparisonInput input) throws Exception {
-        float result = service.compareTwoPhotos(input.photo1(), input.photo2());
-        return new ComparisonOutput(result);
+        System.out.println("SEI_LA");
+
+        try {
+            float result = service.compareTwoPhotos(input.photo1(), input.photo2());
+            return new ComparisonOutput(result);
+        } catch(Exception exc) {
+            exc.printStackTrace();
+            return new ComparisonOutput(-1);
+        }
     }
 
     record ComparisonInput(String photo1, String photo2) { }
