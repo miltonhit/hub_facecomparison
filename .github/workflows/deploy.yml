@@ -94,7 +94,17 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
-      - run: echo ${{ needs.deployBackend.outputs.apiGatewayUrl }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Switch api URL in index.html
+        run: |
+          const fs = require('fs');
+          let content = fs.readFileSync('web/index.html', 'utf8');
+          content = content.replace('${URL_TO_SUBSTITUTE}', '${{ needs.deployBackend.outputs.apiGatewayUrl }}');
+          fs.writeFileSync('web/index.html', content, 'utf8');
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
