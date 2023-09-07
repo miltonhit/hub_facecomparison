@@ -81,6 +81,11 @@ jobs:
           url=$(cat .serverless/manifest.json | jq -r '.prd.urls.apiGateway')
           echo "::set-output name=url::$url"
 
+      - name: export Api Gateway URL
+        run: echo "::set-env name=API_GATEWAY_URL::${{ steps.manifest.outputs.url }}"
+
+      
+
   deploy-frontend:
     needs: deploy-backend
     environment:
@@ -93,7 +98,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
-      - run: echo ${{ steps.manifest.outputs.url }}
+      - run: echo $API_GATEWAY_URL
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
