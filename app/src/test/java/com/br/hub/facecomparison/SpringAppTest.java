@@ -1,6 +1,6 @@
-package com.br.hub.facecomparison.config;
+package com.br.hub.facecomparison;
 
-import com.br.hub.facecomparison.config.config.SpringApp;
+import com.br.hub.facecomparison.config.SpringApp;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

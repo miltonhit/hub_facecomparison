@@ -1,6 +1,6 @@
-package com.br.hub.facecomparison.config;
+package com.br.hub.facecomparison;
 
-import com.br.hub.facecomparison.config.exception.InvalidImageException;
+import com.br.hub.facecomparison.exception.InvalidImageException;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.core.SdkBytes;
 import software.amazon.awssdk.services.rekognition.RekognitionClient;

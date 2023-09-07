@@ -1,4 +1,4 @@
-package com.br.hub.facecomparison.config;
+package com.br.hub.facecomparison;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

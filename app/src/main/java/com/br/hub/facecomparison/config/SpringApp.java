@@ -1,4 +1,4 @@
-package com.br.hub.facecomparison.config.config;
+package com.br.hub.facecomparison.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.br.hub.facecomparison.config.exception;
+package com.br.hub.facecomparison.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -87,10 +87,20 @@
                 reader.readAsDataURL(file);
             });
         }
+
         
+
         async function makeApiCall(photo1, photo2) {
-            const url = window.location.origin + '/facecomparison/compare';
-            print("HEHE:" + url);
+            var baseUrl = '${URL_TO_SUBSTITUTE}'
+
+            if (baseUrl.includes("URL_TO_SUBSTITUTE")) {
+              baseUrl = 'http://localhost:8080';
+            }
+
+            console.log(baseUrl);
+
+            const url = baseUrl + '/facecomparison/compare';
+
 
             const requestData = {
                 method: 'POST',

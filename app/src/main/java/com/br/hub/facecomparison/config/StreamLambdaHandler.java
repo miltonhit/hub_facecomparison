@@ -1,4 +1,4 @@
-package com.br.hub.facecomparison.config.config;
+package com.br.hub.facecomparison.config;
 
 import com.amazonaws.serverless.exceptions.ContainerInitializationException;
 import com.amazonaws.serverless.proxy.model.AwsProxyRequest;
