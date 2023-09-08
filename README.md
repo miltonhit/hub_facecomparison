@@ -1,6 +1,6 @@
 ## hub-facecomparison
 
-### app/
+### What
 This API compares two images and returns the highest face similarity threshold.
 
 ## Stack
@@ -11,7 +11,7 @@ This API compares two images and returns the highest face similarity threshold.
 
 ## To run locally
 First, you need to have Java 17 and Maven installed on your computer. After that, run the following commands in the terminal:
-1. cd app && mvn install
+1. mvn install
 2. java -Dserver.port=8080 -cp target/my-app-with-tomcat.jar com.br.hub.facecomparison.config.SpringApp
 3. Access in your browser: http://localhost:8080/index.html
 
