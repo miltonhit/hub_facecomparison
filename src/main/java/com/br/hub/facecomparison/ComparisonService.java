@@ -70,8 +70,8 @@ public class ComparisonService {
 
             //
             // Separa o MAIOR RESULTADO!
-            Optional<CompareFacesMatch> resultMatchFaceMatch = faceDetails.stream().max(Comparator.comparing(a -> a.face().confidence()));
-            result = resultMatchFaceMatch.isPresent() ? resultMatchFaceMatch.get().face().confidence().floatValue() : 0f;
+            Optional<CompareFacesMatch> resultMatchFaceMatch = faceDetails.stream().max(Comparator.comparing(a -> a.similarity().floatValue()));
+            result = resultMatchFaceMatch.isPresent() ? resultMatchFaceMatch.get().similarity().floatValue() : 0f;
 
         } catch (InvalidParameterException exc) {
             throw new InvalidImageException();
